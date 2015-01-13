@@ -27,5 +27,5 @@
 
 <br>
 
-<%= link_to 'New Brewery', new_brewery_path %><br>
-<%= link_to 'List of beers', beers_path %>
+<%= link_to 'New Brewery', new_brewery_path %>
+<%= link_to 'ist of beers', beers_path %>
