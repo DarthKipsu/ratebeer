@@ -16,5 +16,9 @@
     <% end %>
 </p>
 
+<% if @brewery.ratings.count > 0 %>
+    <p>Has <%= pluralize @brewery.ratings.count, 'rating', 'ratings' %>, average <%= sprintf "%0.1f", @brewery.average_rating %></p>
+<% end %>
+
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
 <%= link_to 'Back', breweries_path %>
