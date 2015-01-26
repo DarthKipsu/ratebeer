@@ -3,7 +3,13 @@ Rails.application.routes.draw do
 
   resources :breweries
 
+  resources :users
+
   resources :ratings, only: [:index, :new, :create, :destroy]
+
+  resource :session, only: [:new, :create, :delete]
+
+  get 'signup', to: 'users#new'
 
   root 'breweries#index'
 
