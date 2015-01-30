@@ -6,6 +6,12 @@
     <p>Has made <%= pluralize @user.ratings.count, 'rating', 'ratings' %>, average <%= sprintf "%0.1f", @user.average_rating %></p>
 <% end %>
 
+<% if !@user.memberships.empty? %>
+    <p>Member of 
+    <% @user.beer_clubs.each do |club| %>
+        <%= link_to club.name, club %>
+    <% end %></p>
+<% end %>
 
 <p><strong>Ratings:</strong></p>
 <% if @user.ratings.empty? %><p>No ratings yet!</p><% end %>
