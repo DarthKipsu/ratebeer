@@ -16,6 +16,7 @@ class BeersController < ApplicationController
   def new
     @beer = Beer.new
     include_breweries_and_styles
+
   end
 
   # GET /beers/1/edit
@@ -33,7 +34,8 @@ class BeersController < ApplicationController
         format.html { redirect_to beers_path, notice: 'Beer was successfully created.' }
         format.json { render :show, status: :created, location: @beer }
       else
-        format.html { render :new }
+        format.html { include_breweries_and_styles
+                      render :new }
         format.json { render json: @beer.errors, status: :unprocessable_entity }
       end
     end
