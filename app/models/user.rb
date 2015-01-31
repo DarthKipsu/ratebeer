@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
                          format: { with: /([A-Z]\D*\d|\d\D*[A-Z])/,
                 message: "must contain at least one capital letter and one number" }
 
-    has_many :ratings
+    has_many :ratings, dependent: :destroy
     has_many :beers, through: :ratings
     has_many :memberships, dependent: :destroy
     has_many :beer_clubs, through: :memberships
