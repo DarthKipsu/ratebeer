@@ -22,8 +22,16 @@ class User < ActiveRecord::Base
     def favorite_style
         return nil if ratings.empty?
         rated_styles.max_by do |style|
-            ratings_for_style = ratings_for(style)
+            ratings_for_style = ratings_by_style(style)
             ratings_for_style.map(&:score).sum / ratings_for_style.count
+        end
+    end
+
+    def favorite_brewery
+        return nil if ratings.empty?
+        rated_breweries.max_by do |brewery|
+            ratings_for_brewery = ratings_by_brewery(brewery)
+            ratings_for_brewery.map(&:score).sum / ratings_for_brewery.count
         end
     end
 
@@ -31,8 +39,16 @@ class User < ActiveRecord::Base
         ratings.map { |r| r.beer.style }.uniq
     end
 
-    def ratings_for(style)
+    def ratings_by_style(style)
         ratings.select { |r| r.beer.style.eql? style }
+    end
+
+    def rated_breweries
+        ratings.map { |r| r.beer.brewery.name }.uniq 
+    end
+
+    def ratings_by_brewery(brewery)
+        ratings.select { |r| r.beer.brewery.name.eql? brewery }
     end
 
 end
