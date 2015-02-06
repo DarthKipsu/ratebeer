@@ -10,15 +10,19 @@
 
 <p>Number of beers <%= @brewery.beers.count %>.</p>
 
-<p>
-  <% @brewery.beers.each do |beer| %>
-    <%= link_to beer.name, beer %></td>
-    <% end %>
-</p>
-
 <% if @brewery.ratings.count > 0 %>
     <p>Has <%= pluralize @brewery.ratings.count, 'rating', 'ratings' %>, average <%= sprintf "%0.1f", @brewery.average_rating %></p>
 <% end %>
 
-<%= link_to 'Edit', edit_brewery_path(@brewery) %> |
+<ul>
+  <% @brewery.beers.each do |beer| %>
+      <li><%= link_to beer.name, beer %></li>
+    <% end %>
+</ul>
+
 <%= link_to 'Back', breweries_path %>
+<% if current_user %>
+    | <%= link_to 'Edit', edit_brewery_path(@brewery) %>
+    | <%= link_to 'Destroy', brewery_path(@brewery), method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+<% end %>

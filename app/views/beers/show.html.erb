@@ -19,4 +19,9 @@
     <p>Has <%= pluralize @beer.ratings.count, 'rating', 'ratings' %>, average <%= sprintf "%0.1f", @beer.average_rating %></p>
 <% end %>
 
-<%= link_to 'Edit', edit_beer_path(@beer) %>
+<%= link_to 'Back', beers_path %>
+<% if current_user %>
+    | <%= link_to 'Edit', edit_beer_path(@beer) %>
+    | <%= link_to 'Destroy', beer_path(@beer), method: :delete,
+                data: { confirm: 'Are you sure?'} %>
+<% end %>
