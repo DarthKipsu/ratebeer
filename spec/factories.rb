@@ -1,6 +1,6 @@
 FactoryGirl.define do
     factory :user do
-        username
+        username "Pekka"
         password "Foobar1"
         password_confirmation "Foobar1"
     end
@@ -22,10 +22,6 @@ FactoryGirl.define do
         name "anonymous"
         brewery
         style "Lager"
-    end
-
-    sequence :username do |n|
-        "Kauttaja#{n}"
     end
 
 end
