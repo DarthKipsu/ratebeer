@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 describe "User" do
-    before :each do
-       FactoryGirl.create(:user)
-    end
+    let!(:user) { FactoryGirl.create(:user) }
 
     describe "who has signed up" do
         it "can signin with right credentials" do
@@ -16,6 +14,20 @@ describe "User" do
             sign_in(username: 'Pekka', password: 'wrong')
             expect(current_path).to eq(signin_path)
             expect(page).to have_content 'Username and/or password mismatch'
+        end
+
+        it "does not have favorite style or brewery if has no ratings" do
+            sign_in(username: 'Pekka', password: 'Foobar1')
+            expect(page).not_to have_content 'Favorite beer style is'
+            expect(page).not_to have_content 'and brewery'
+        end
+
+        it "has favorite beer style and brewery after at least one rating" do
+            beer = FactoryGirl.create(:beer)
+            FactoryGirl.create(:rating, user:user, beer:beer)
+            sign_in(username: 'Pekka', password: 'Foobar1')
+            expect(page).to have_content 'Favorite beer style is Lager'
+            expect(page).to have_content 'and brewery anonymous'
         end
     end
 
