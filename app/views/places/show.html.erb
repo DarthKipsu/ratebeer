@@ -1,0 +1,9 @@
+<h2><%= @place.name %></h2>
+
+<% if @place.overall != "0" %>
+    <p><strong>Overall score:</strong> <%= sprintf "%0.1f", @place.overall %></p>
+<% end %>
+
+<p><%= @place.street %></br><%= @place.zip %> <%= @place.city %></p>
+
+<iframe src=<%= @place.blogmap %> height="300" width="450"></iframe>
