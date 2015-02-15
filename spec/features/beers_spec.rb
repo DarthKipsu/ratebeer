@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe "Beer" do
     let!(:brewery) { FactoryGirl.create :brewery, name:'Koff' }
+    let!(:style) { FactoryGirl.create :style }
     let!(:user) { FactoryGirl.create :user }
 
     before :each do
@@ -30,6 +31,6 @@ end
 def create_new_beer(name, style, brewery_name)
     visit new_beer_path
     fill_in 'beer_name', with: name
-    select style, from: 'beer[style]'
+    select style, from: 'beer[style_id]'
     select brewery_name, from: 'beer[brewery_id]'
 end

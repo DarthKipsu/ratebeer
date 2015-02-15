@@ -3,8 +3,8 @@
 <h2><%= @beer.name %></h2>
 
 <p>
-    <strong>Style:</strong><%= @beer.style %></br>
-    <strong>Brewery:</strong><%= @beer.brewery.name %>
+    <strong>Style:</strong> <%= link_to @beer.style, @beer.style %></br>
+    <strong>Brewery:</strong> <%= link_to @beer.brewery.name, @beer.brewery %>
 </p>
 
 <% if !@beer.ratings.empty? %>
@@ -20,9 +20,8 @@
     <p></p>
 <% end %>
 
-<%= link_to 'Back', beers_path %>
 <% if current_user %>
-    | <%= link_to 'Edit', edit_beer_path(@beer) %>
-| <%= link_to 'Destroy', beer_path(@beer), method: :delete,
+    <%= link_to 'Edit', edit_beer_path(@beer) %>
+    | <%= link_to 'Destroy', beer_path(@beer), method: :delete,
     data: { confirm: 'Are you sure?'} %>
-              <% end %>
+<% end %>

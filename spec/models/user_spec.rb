@@ -80,15 +80,15 @@ describe User do
         it "has favorite style which is the only rated if only one rating" do
             beer = FactoryGirl.create(:beer)
             rating = FactoryGirl.create(:rating, beer:beer, user:user)
-            expect(user.favorite_style).to eq("Lager")
+            expect(user.favorite_style.name).to eq("Lager")
         end
 
         it "has favorite style based on rating averages" do
             create_beers_with_ratings(9, 8, "Lager", user)
             create_beers_with_ratings(23, 24, "Porter", user)
-            create_beers_with_ratings(25, 13, 22, "Pale Ale", user)
+            create_beers_with_ratings(25, 24, 22, "Pale Ale", user)
             
-            expect(user.favorite_style).to eq("Porter")
+            expect(user.favorite_style.name).to eq("Pale Ale")
         end
 
         it "has method for determining the favorite_brewery" do
@@ -123,6 +123,7 @@ def create_beers_with_ratings(*scores, style, user)
 end
 
 def create_beer_with_rating(score, style, user)
+    style = FactoryGirl.create(:style, name:style)
     beer = FactoryGirl.create(:beer, style:style)
     FactoryGirl.create(:rating, score:score, beer:beer, user:user)
     beer
