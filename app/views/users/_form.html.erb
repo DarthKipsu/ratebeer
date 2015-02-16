@@ -11,21 +11,17 @@
     </div>
   <% end %>
 
+  <div class="col-md-5">
+    <div class="form-group">
   <% if @user.new_record? %>
-      <div class="field">
-        <%= f.label :username %><br>
-        <%= f.text_field :username %>
-      </div>
+        <%= f.label :username %>
+        <%= f.text_field :username, class:'form-control' %>
   <% end %>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+    <%= f.label :password %>
+    <%= f.password_field :password, class:'form-control' %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class:'form-control' %>
+    </div>
+    <%= f.submit 'Create User', class:'btn btn-primary' %>
   </div>
 <% end %>

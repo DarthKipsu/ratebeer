@@ -2,13 +2,13 @@
 
 <h1>Listing Beers</h1>
 
-<table>
+<div class="col-md-7">
+<table class="table table-condensed table-hover">
   <thead>
     <tr>
       <th align="left">Name</th>
       <th align="left">Style</th>
       <th align="left">Brewery</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -26,3 +26,4 @@
 <br>
 
 <%= link_to('New Beer', new_beer_path) if current_user %><br>
+</div>

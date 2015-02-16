@@ -3,8 +3,8 @@
 <%= form_for(@rating) do |f| %>
     <% if @rating.errors.any? %>
         <div id="error_explanation">
-            <h2><%= pluralize(@rating.errors.count, "error") %>
-            prohibited rating from being saved:</h2>
+            <h3><%= pluralize(@rating.errors.count, "error") %>
+            prohibited rating from being saved:</h3>
             <ul>
                 <% @rating.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>
@@ -13,7 +13,11 @@
         </div>
     <% end %>
 
-    beer: <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, selected: @rating.beer_id) %>
-    score: <%= f.number_field :score %>
-    <div class="actions"><%= f.submit %></div>
+  <div class="col-md-12">
+    <div class="form-inline">
+      <label>beer:</label> <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, selected: @rating.beer_id), {}, {class:'form-control'} %>
+      <label>score:</label> <%= f.number_field :score, class:'form-control' %>
+      <%= f.submit 'Create Rating', class:'btn btn-primary' %>
+    </div>
+  </div>
 <% end %>

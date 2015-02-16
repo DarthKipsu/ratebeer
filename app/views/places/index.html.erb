@@ -2,16 +2,21 @@
 
 <h1>Beer places search</h1>
 
-<%= form_tag places_path do %>
-    city <%= text_field_tag :city, params[:city] %>
-<%= submit_tag "Search" %>
-<% end %>
+<div class="col-md-12">
+    <div class="form-inline">
+    <%= form_tag places_path do %>
+    <label>City</label>
+    <%= text_field_tag :city, params[:city], class:'form-control' %>
+    <%= submit_tag "Search", class:'btn btn-primary' %>
+    <% end %>
+    </div>
 
-<% if @places %>
-    <table>
+    <% if @places %>
+    <table class="table table-condensed table-hover">
         <thead>
+            <th>Page</th>
             <% Place.rendered_fields.each do |f| %>
-                <td><%= f %></td>
+                <th><%= f %></th>
             <% end %>
         </thead>
         <% @places.each do |place| %>
@@ -24,3 +29,4 @@
         <% end %>
     </table>
 <% end %>
+</div>
