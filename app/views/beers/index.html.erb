@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Beers</h1>
 
-<div class="col-md-7">
+<div class="col-md-10">
 <table class="table table-condensed table-hover">
   <thead>
     <tr>
@@ -25,5 +23,5 @@
 
 <br>
 
-<%= link_to('New Beer', new_beer_path) if current_user %><br>
+<%= link_to('New Beer', new_beer_path, class: 'btn btn-primary') if current_user %><br>
 </div>

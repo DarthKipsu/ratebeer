@@ -31,6 +31,7 @@ group :development, :test do
       gem 'better_errors'
       gem 'rspec-rails', '~> 3.0'
       gem 'guard-rspec'
+      gem 'rails_layout'
 end
 
 group :production do

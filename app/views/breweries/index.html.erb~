@@ -4,12 +4,12 @@
 
 <p> Number of breweries: <%= @breweries.count %> </p>
 
-<div class="col-md-6">
+<div class="col-md-10">
 <table class="table table-condensed table-hover">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Year</th>
+      <th>Since</th>
     </tr>
   </thead>
 
@@ -25,5 +25,5 @@
 
 <br>
 
-<%= link_to('New Brewery', new_brewery_path) if current_user %><br>
+<%= link_to('New Brewery', new_brewery_path, class: 'btn btn-primary') if current_user %><br>
 </div>

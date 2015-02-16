@@ -30,6 +30,7 @@ end
 
 def create_new_beer(name, style, brewery_name)
     visit new_beer_path
+    #puts page.body
     fill_in 'beer_name', with: name
     select style, from: 'beer[style_id]'
     select brewery_name, from: 'beer[brewery_id]'

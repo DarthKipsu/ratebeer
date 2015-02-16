@@ -11,13 +11,13 @@
     </div>
   <% end %>
 
-  <div class="col-md-12">
-    <div class="form-inline">
+  <div class="col-md-6">
+    <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class:'form-control' %>
     <%= f.label :year %>
     <%= f.number_field :year, class:'form-control' %>
-    <%= f.submit 'Create', class:'btn btn-primary' %>
     </div>
+    <%= f.submit 'Create', class:'btn btn-primary' %>
   </div>
 <% end %>
