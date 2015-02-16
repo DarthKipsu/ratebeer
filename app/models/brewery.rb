@@ -22,4 +22,8 @@ class Brewery < ActiveRecord::Base
         self.year = 2015
         puts "changed year to #{year}"
     end
+
+    def self.top(n)
+      Brewery.all.sort_by{ |b| -(b.average_rating||0) }.take(n)
+    end
 end

@@ -1,27 +1,67 @@
-<h2>Listing Ratings</h2>
+<div class="col-md-12"> 
+<div class="col-md-6"> 
+  <h2>Top Ratings</h2>
 
-<p>Number of ratings: <%= @ratings.count %></p>
-
-<div class="col-md-10">
-<table class="table table-condensed table-hover">
-  <thead>
-    <tr>
-      <th>Beer</th>
-      <th>Rating</th>
-      <th>User</th>
-    </tr>
-  </thead>
-
-  <tbody>
-      <% @ratings.each do |rating| %>
+  <p>Number of ratings: <%= @ratings.count %></p>
+</div>
+<div class="col-md-6"> 
+  </br>
+  <%= link_to 'New rating', new_rating_path, class: 'btn btn-primary' if current_user %>
+</div>
+</div>
+<div class="col-md-6">
+  <h3>Top rated breweries</h3>
+  <%= render 'top_list', top_list: @top_breweries %>
+</div>
+<div class="col-md-6">
+  <h3>Top rated beers</h3>
+  <%= render 'top_list', top_list: @top_beers %>
+</div>
+<div class="col-md-6"> 
+  <h3>Top rated styles</h3>
+  <%= render 'top_list', top_list: @top_styles %>
+</div>
+<div class="col-md-6"> 
+  <h3>Users with most ratings</h3>
+  <table class="table table-condensed table-hover">
+    <thead>
       <tr>
-        <td><%= rating.beer.name %></td>
-        <td><%= rating.score %></td>
-        <td><%= link_to rating.user.username, rating.user %></td>
+        <th>User</th>
+        <th>Ratings</th>
+        <th>Avg. rating</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<%= link_to 'New rating', new_rating_path, class: 'btn btn-primary' if current_user %>
+    <tbody>
+      <% @top_raters.each do |user| %>
+        <tr>
+          <td><%= link_to user.username, user %></td>
+          <td><%= user.ratings.count %></td>
+          <td><%= sprintf "%0.1f", user.average_rating %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-6"> 
+  <h3>Most recent ratings</h3>
+  <table class="table table-condensed table-hover">
+    <thead>
+      <tr>
+        <th>Beer</th>
+        <th>Rating</th>
+        <th>User</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @recent_ratings.each do |rating| %>
+        <tr>
+          <td><%= link_to rating.beer.name, rating.beer %></td>
+          <td><%= rating.score %></td>
+          <td><%= link_to rating.user.username, rating.user %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
