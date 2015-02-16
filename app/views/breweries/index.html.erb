@@ -1,27 +1,13 @@
 <h1>Listing Breweries</h1>
 
-<p> Number of breweries: <%= @breweries.count %> </p>
-
 <div class="col-md-10">
-<table class="table table-condensed table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Since</th>
-    </tr>
-  </thead>
+    <h3>Active</h3>
+    <p> Number of active breweries: <%= @active_breweries.count %> </p>
+    <%= render 'list', breweries: @active_breweries %>
 
-  <tbody>
-    <% @breweries.each do |brewery| %>
-      <tr>
-        <td><%= link_to brewery.name, brewery %></td>
-        <td><%= brewery.year %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <h3>Retired</h3>
+    <p> Number of retired breweries: <%= @retired_breweries.count %> </p>
+    <%= render 'list', breweries: @retired_breweries %>
 
-<br>
-
-<%= link_to('New Brewery', new_brewery_path, class: 'btn btn-primary') if current_user %><br>
+    <%= link_to('New Brewery', new_brewery_path, class: 'btn btn-primary') if current_user %>
 </div>

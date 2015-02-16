@@ -4,19 +4,23 @@
       <h3><%= pluralize(@brewery.errors.count, "error") %> prohibited this brewery from being saved:</h3>
 
       <ul>
-      <% @brewery.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @brewery.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="col-md-6">
     <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class:'form-control' %>
-    <%= f.label :year %>
-    <%= f.number_field :year, class:'form-control' %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class:'form-control' %>
+      <%= f.label :year %>
+      <%= f.number_field :year, class:'form-control' %>
+      <div class="form-group form-inline">
+        <%= f.label :active %>
+        <%= f.check_box :active, class:'check_box form-control' %>
+      </div>
     </div>
     <%= f.submit 'Create', class:'btn btn-primary' %>
   </div>
