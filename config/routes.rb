@@ -23,6 +23,10 @@ Rails.application.routes.draw do
 
   root 'breweries#index'
 
+  resources :breweries do
+    post 'toggle_activity', on: :member
+  end
+
   #get 'kaikki_bisset', to: 'beers#index'
   #get 'ratings', to: 'ratings#index'
   #get 'ratings/new', to: 'ratings#new'

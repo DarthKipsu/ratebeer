@@ -1,7 +1,7 @@
 <table class="table table-condensed table-hover">
 <thead>
   <tr>
-    <th>Brewery</th>
+    <th><%= top_list.first.class.name %></th>
     <th>Avg. rating</th>
   </tr>
 </thead>
@@ -9,7 +9,7 @@
   <% top_list.each do |b| %>
     <tr>
       <td><%= link_to b.name, b %></td>
-      <td><%= sprintf "%0.1f", b.average_rating %></td>
+      <td><%= round b.average_rating %></td>
     </tr>
   <% end %>
 </tbody>

@@ -37,7 +37,7 @@
         <tr>
           <td><%= link_to user.username, user %></td>
           <td><%= user.ratings.count %></td>
-          <td><%= sprintf "%0.1f", user.average_rating %></td>
+          <td><%= round user.average_rating %></td>
         </tr>
       <% end %>
     </tbody>

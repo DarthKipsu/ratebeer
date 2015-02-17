@@ -1,7 +1,7 @@
 <h2><%= @user.username %></h2>
 
 <% if !@user.ratings.empty? %>
-    <p>Has made <%= pluralize @user.ratings.count, 'rating', 'ratings' %>, average <%= sprintf "%0.1f", @user.average_rating %></p>
+    <p>Has made <%= pluralize @user.ratings.count, 'rating', 'ratings' %>, average <%= round @user.average_rating %></p>
 
     <p>Favorite beer style is <strong><%= @user.favorite_style %></strong> 
     and brewery <strong><%= @user.favorite_brewery %></strong></p>

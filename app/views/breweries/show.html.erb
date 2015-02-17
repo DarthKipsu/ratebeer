@@ -1,17 +1,19 @@
-<p id="notice"><%= notice %></p>
-
+<div class="col-md-12">
 <h2>
   <%= @brewery.name %>
 </h2>
 
 <p>
-  <i>Established in: <%= @brewery.year %>.</i>
+<i>
+  Established in: <%= @brewery.year %>. 
+  <% if not @brewery.active %>Retired.<% end %>
+  </i>
 </p>
 
 <p>Number of beers <%= @brewery.beers.count %>.</p>
 
 <% if @brewery.ratings.count > 0 %>
-    <p>Has <%= pluralize @brewery.ratings.count, 'rating', 'ratings' %>, average <%= sprintf "%0.1f", @brewery.average_rating %></p>
+    <p>Has <%= pluralize @brewery.ratings.count, 'rating', 'ratings' %>, average <%= round @brewery.average_rating %></p>
 <% end %>
 
 <ul>
@@ -20,9 +22,6 @@
     <% end %>
 </ul>
 
-<%= link_to 'Back', breweries_path %>
-<% if current_user %>
-    | <%= link_to 'Edit', edit_brewery_path(@brewery) %>
-    | <%= link_to 'Destroy', brewery_path(@brewery), method: :delete,
-                data: { confirm: 'Are you sure?' } %>
-<% end %>
+<%= link_to "change activity", toggle_activity_brewery_path(@brewery.id), method: :post, class: "btn btn-primary" %>
+<%= edit_and_destroy_buttons(@brewery) %>
+</div>
