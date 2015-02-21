@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_that_signed_in
-      redirect_to signin_path, notice: 'you should be signed in' if current_user.nil?
+      redirect_to signin_path, notice: 'You should be signed in' if current_user.nil?
+  end
+
+  def ensure_that_admin
+    redirect_to signin_path, notice: 'You should sign in with admin account to delete stuff' if not current_user.admin
   end
 end

@@ -164,6 +164,7 @@
         1,
         1,
         1,
+        1,
         null,
         null,
         null,
@@ -261,6 +262,10 @@
         1,
         4,
         null,
+        null,
+        1,
+        0,
+        null,
         null
       ],
       "/home/kipsu/Coding/ratebeer/app/controllers/users_controller.rb": [
@@ -342,6 +347,7 @@
         null
       ],
       "/home/kipsu/Coding/ratebeer/app/controllers/beers_controller.rb": [
+        1,
         1,
         1,
         1,
@@ -429,6 +435,7 @@
         null
       ],
       "/home/kipsu/Coding/ratebeer/app/controllers/breweries_controller.rb": [
+        1,
         1,
         1,
         1,
@@ -687,6 +694,6 @@
         null
       ]
     },
-    "timestamp": 1424147936
+    "timestamp": 1424526291
   }
 }
