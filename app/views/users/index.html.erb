@@ -1,25 +1,32 @@
 <h1>Listing Users</h1>
 
 <div class="col-md-6">
-<table class="table table-condensed table-hover">
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+  <table class="table table-condensed table-hover">
+    <thead>
       <tr>
-        <td><%= link_to user.username, user %></td>
-        <td><% if user.admin %><kbd>Admin</kbd><% end %></td>
+        <th>Username</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.username, user %></td>
+          <td>
+            <% if user.admin %>
+              <div class="label label-info">admin</div>
+            <% end %>
+            <% if current_user.admin and user.suspended %>
+              <div class="label label-warning">account frozen</div>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>
+  <br>
+
+  <%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>
 </div>

@@ -21,6 +21,13 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def toggle_suspend
+    user = User.find(params[:id])
+    user.update_attribute :suspended, (not user.suspended)
+    new_status = user.suspended? ? "frozen" : "active"
+    redirect_to :back, notice:"user activity status changed to #{new_status}"
+  end
+
   # POST /users
   # POST /users.json
   def create
