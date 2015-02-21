@@ -39,7 +39,7 @@
   <%= link_to 'Change password', edit_user_path(@user), class: 'btn btn-primary' %>
   <%= link_to 'Destroy account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %> 
 <% end %>
-<% if current_user.admin? %>
+<% if current_user && current_user.admin? %>
   <% link_text = @user.suspended ? 'Reactivate account' : 'Freeze account' %>
   <%= link_to link_text, toggle_suspend_user_path(@user), method: :post, class: 'btn btn-danger' %>
 <% end %>
