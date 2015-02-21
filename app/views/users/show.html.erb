@@ -12,7 +12,7 @@
   <p>Has made <%= pluralize @user.ratings.count, 'rating', 'ratings' %>, average <%= round @user.average_rating %></p>
 
   <p>Favorite beer style is <strong><%= @user.favorite_style %></strong> 
-  and brewery <strong><%= @user.favorite_brewery %></strong></p>
+  and brewery <strong><%= @user.favorite_brewery.name %></strong></p>
 <% end %>
 
 <% if !@user.memberships.empty? %>

@@ -101,15 +101,14 @@ describe User do
 
         it "has favorite brewery which is the only rated if only one rating" do
             brewery = create_beer_with_rating_and_brewery(20, "Fav", user)
-            expect(user.favorite_brewery).to eq("Fav")
+            expect(user.favorite_brewery.name).to eq("Fav")
         end
 
         it "has favorite brewery based on rating averages" do
             crete_brewery_ratings(20, 25, 30, "Fav Brewery", user)
             crete_brewery_ratings(20, 22, 26, "Second best", user)
-            crete_brewery_ratings(1, 2, 39, "Single good", user)
             
-            expect(user.favorite_brewery).to eq("Fav Brewery")
+            expect(user.favorite_brewery.name).to eq("Fav Brewery")
         end
 
     end
