@@ -14,10 +14,10 @@
         <tr>
           <td><%= link_to user.username, user %></td>
           <td>
-            <% if user.admin? %>
+            <% if user && user.admin? %>
               <div class="label label-info">admin</div>
             <% end %>
-            <% if current_user.admin? && user.suspended? %>
+            <% if current_user && current_user.admin? && user.suspended? %>
               <div class="label label-warning">account frozen</div>
             <% end %>
           </td>

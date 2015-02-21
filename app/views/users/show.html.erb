@@ -1,8 +1,8 @@
 <div class="col-md-12">
 <div class="col-md-5"><h2><%= @user.username %></h2></div>
 <div class="col-md-5 top-margin">
-  <% if @user.admin? %><div class="label label-info">admin</div><% end %>
-  <% if current_user.admin? && @user.suspended? %>
+  <% if @user && @user.admin? %><div class="label label-info">admin</div><% end %>
+  <% if current_user && current_user.admin? && @user.suspended? %>
     <div class="label label-warning">account frozen</div>
   <% end %>
 </div>
