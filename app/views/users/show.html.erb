@@ -1,4 +1,7 @@
-<h2><%= @user.username %></h2>
+<div class="col-md-12">
+  <div class="col-md-5"><h2><%= @user.username %></h2></div>
+  <div class="col-md-5 top-margin"><% if @user.admin %><kbd>Admin</kbd><% end %></div>
+</div>
 
 <% if !@user.ratings.empty? %>
     <p>Has made <%= pluralize @user.ratings.count, 'rating', 'ratings' %>, average <%= round @user.average_rating %></p>

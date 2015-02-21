@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th>Username</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -12,6 +13,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.username, user %></td>
+        <td><% if user.admin %><kbd>Admin</kbd><% end %></td>
       </tr>
     <% end %>
   </tbody>

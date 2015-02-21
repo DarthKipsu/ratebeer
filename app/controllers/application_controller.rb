@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_that_admin
-    redirect_to signin_path, notice: 'You should sign in with admin account to delete stuff' if not current_user.admin
+    redirect_to :back, notice: 'You should sign in with admin account to delete stuff' if not current_user.admin
   end
 end
