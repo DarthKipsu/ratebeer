@@ -2,7 +2,7 @@
 <div class="col-md-5"><h2><%= @user.username %></h2></div>
 <div class="col-md-5 top-margin">
   <% if @user.admin? %><div class="label label-info">admin</div><% end %>
-  <% if current_user.admin? and @user.suspended? %>
+  <% if current_user.admin? && @user.suspended? %>
     <div class="label label-warning">account frozen</div>
   <% end %>
 </div>
@@ -39,7 +39,7 @@
   <%= link_to 'Change password', edit_user_path(@user), class: 'btn btn-primary' %>
   <%= link_to 'Destroy account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %> 
 <% end %>
-<% if current_user.admin %>
+<% if current_user.admin? %>
   <% link_text = @user.suspended ? 'Reactivate account' : 'Freeze account' %>
   <%= link_to link_text, toggle_suspend_user_path(@user), method: :post, class: 'btn btn-danger' %>
 <% end %>
