@@ -19,6 +19,9 @@ class BeersController < ApplicationController
     end
   end
 
+  def list
+  end
+
   # GET /beers/1
   # GET /beers/1.json
   def show
