@@ -8,6 +8,7 @@ class BreweriesController < ApplicationController
   def index
     order = params[:order] || 'name'
     breweries = Brewery.ordered order, session[:order]
+    @breweries = Brewery.all
     @active_breweries = breweries[:active]
     @retired_breweries = breweries[:retired]
     session[:order] = breweries[:session]

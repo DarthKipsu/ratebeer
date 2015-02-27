@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'signin', to: 'sessions#new'
   get 'beerlist', to: 'beers#list'
   get 'ngbeerlist', to: 'beers#nglist'
+  get 'brewerylist', to: 'breweries#list'
 
   post 'places', to: 'places#search'
 
