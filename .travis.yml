@@ -1,11 +1,14 @@
 language: ruby
 rvm:
     - 2.1.5
+before_install:
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
 script:
     - bundle exec rake db:migrate --trace
-- RAILS_ENV=test bundle exec rake db:migrate --trace
-- bundle exec rake db:test:prepare
-- bundle exec rspec -fd spec/
+    - RAILS_ENV=test bundle exec rake db:migrate --trace
+    - bundle exec rake db:test:prepare
+    - bundle exec rspec -fd spec/
 deploy:
     provider: heroku
 api_key:
@@ -14,7 +17,3 @@ run: "rake db:migrate"
 app: quiet-castle-3777
 on:
     repo: DarthKipsu/ratebeer
-
-before_install:
-    - "export DISPLAY=:99.0"
-    - "sh -e /etc/init.d/xvfb start"
