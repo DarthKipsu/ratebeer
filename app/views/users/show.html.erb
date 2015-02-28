@@ -15,11 +15,22 @@
   and brewery <strong><%= @user.favorite_brewery.name %></strong></p>
 <% end %>
 
-<% if !@user.memberships.empty? %>
-  <p>Member of 
-  <% @user.beer_clubs.each do |club| %>
-    <%= link_to club.name, club %>
-  <% end %></p>
+<% if !@user.memberships.confirmed.empty? %>
+  <strong>Member of</strong>
+  <ul>
+    <% @user.memberships.confirmed.each do |membership| %>
+      <li><%= link_to membership.beer_club.name, membership.beer_club %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if !@user.memberships.applications.empty? %>
+  <strong>Applied membership of</strong>
+  <ul>
+    <% @user.memberships.applications.each do |application| %>
+      <li><%= link_to application.beer_club.name, application.beer_club %></li>
+    <% end %>
+  </ul>
 <% end %>
 
 <p><strong>Ratings:</strong></p>

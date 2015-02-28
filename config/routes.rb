@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   delete 'signout', to: 'sessions#destroy'
 
+  put 'confirm_membership', to: 'memberships#confirm'
+
   root 'breweries#index'
 
   resources :breweries do
@@ -33,6 +35,7 @@ Rails.application.routes.draw do
   resources :users do
     post 'toggle_suspend', on: :member
   end
+
 
   #get 'kaikki_bisset', to: 'beers#index'
   #get 'ratings', to: 'ratings#index'

@@ -22,6 +22,13 @@ class MembershipsController < ApplicationController
   def edit
   end
 
+  def confirm
+    membership = Membership.find_by(user_id: params[:user_id], beer_club_id: params[:beer_club_id])
+    membership.confirmed = true
+    membership.save
+    redirect_to :back, notice:"Membership for #{membership.user.username} confirmed!"
+  end
+
   # POST /memberships
   # POST /memberships.json
   def create
@@ -30,7 +37,7 @@ class MembershipsController < ApplicationController
     respond_to do |format|
       current_user.memberships << @membership
       if @membership.save
-        format.html { redirect_to @membership.beer_club, notice: "#{@membership.user.username}, welcome to club!" }
+        format.html { redirect_to @membership.beer_club, notice: "Your application has been sent for approval!" }
         format.json { render :show, status: :created, location: @membership }
       else
         format.html { render :new }

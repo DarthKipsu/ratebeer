@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h2><%= @beer_club.name %>, <%= @beer_club.city %></h2>
 
 <p>Founded in <%= @beer_club.founded %></p>
@@ -7,28 +5,52 @@
 <p><strong>Members</strong></p>
 
 <ul>
-    <% @beer_club.users.each do |member| %>
-        <li><%= link_to member.username, member %></li>
-    <% end %>
+  <% @beer_club.memberships.confirmed.each do |membership| %>
+    <li><%= link_to membership.user.username, membership.user %></li>
+  <% end %>
 </ul>
-<% if @beer_club.users.empty? %><p>No members yet!</p><% end %>
+<% if @beer_club.memberships.confirmed.empty? %><p>No members yet!</p><% end %>
 
-<% if current_user && !@membership.beer_club.users.include?(current_user) %>
+<% if current_user && @beer_club.memberships.confirmed.exists?(user_id:current_user.id) %>
+  <p><strong>Outstanding applications</strong></p>
+
+  <ul>
+    <% @beer_club.memberships.applications.each do |application| %>
+      <li>
+        <%= link_to application.user.username, application.user %>
+        <%= link_to 'confirm',
+          confirm_membership_path(user_id: application.user.id,
+                                  beer_club_id: @beer_club.id),
+          method: :put, class: "btn btn-primary btn-xs" %>
+    </li>
+  <% end %>
+  </ul>
+  <% if @beer_club.memberships.applications.empty? %>
+    <p>No applications outstanding!</p>
+  <% end %>
+<% end %>
+
+<% if current_user && @beer_club.memberships.applications.exists?(user_id:current_user.id) %>
+  <strong>Your application to join the club is awaiting approval!</strong>
+<% elsif current_user && !@membership.beer_club.users.include?(current_user) %>
+  <div class="form-group">
     <%= form_for(@membership) do |f| %>
-        <%= f.hidden_field :beer_club_id %>
-        <%= f.submit value:"join the club" %>
+      <%= f.hidden_field :beer_club_id %>
+      <%= f.submit value:"join the club", class:'btn btn-primary' %>
     <% end %>
-<% elsif current_user %>
+  </div>
+<% elsif current_user && @beer_club.memberships.confirmed.count > 1 %>
+  <div class="form-group">
     <%= form_for(@membership, method: "delete") do |f| %>
-        <%= f.hidden_field :beer_club_id %>
-        <%= f.submit value: "end the membership" %>
+      <%= f.hidden_field :beer_club_id %>
+      <%= f.submit value: "end your membership", class:'btn btn-danger' %>
     <% end %>
+  </div>
 <% end %>
 <p></p>
 
-<%= link_to 'Back', beer_clubs_path %>
 <% if current_user %>
-    | <%= link_to 'Edit', edit_beer_club_path(@beer_club) %>
-| <%= link_to 'Destroy', beer_club_path(@beer_club), method: :delete,
-    data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit club', edit_beer_club_path(@beer_club), class: "btn btn-primary" %>
+  <%= link_to 'Destroy club', beer_club_path(@beer_club), method: :delete,
+    data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 <% end %>
