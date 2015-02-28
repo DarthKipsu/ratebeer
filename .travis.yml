@@ -11,9 +11,9 @@ script:
     - bundle exec rspec -fd spec/
 deploy:
     provider: heroku
-api_key:
-    secure: Bz69RSTMcauGZqbyGd/GXnkprqZnMHScPc2MAo7cbcQ6wSsYjkyMlfnS8trKRYXh+JtWpn8t2DDU//R1mcSWLuBuuDXJt5rWK522wVJtwdCo9GzTscDrXaH0iO63w0Bjo9frpuKi5rM1gr5EqheKos5M1QeXoQFgslJXS2YNIw4=
-run: "rake db:migrate"
-app: quiet-castle-3777
-on:
-    repo: DarthKipsu/ratebeer
+    api_key:
+        secure: Bz69RSTMcauGZqbyGd/GXnkprqZnMHScPc2MAo7cbcQ6wSsYjkyMlfnS8trKRYXh+JtWpn8t2DDU//R1mcSWLuBuuDXJt5rWK522wVJtwdCo9GzTscDrXaH0iO63w0Bjo9frpuKi5rM1gr5EqheKos5M1QeXoQFgslJXS2YNIw4=
+    run: "rake db:migrate"
+    app: quiet-castle-3777
+    on:
+        repo: DarthKipsu/ratebeer
