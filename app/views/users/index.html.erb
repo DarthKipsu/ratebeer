@@ -1,11 +1,14 @@
 <h1>Listing Users</h1>
 
-<div class="col-md-6">
+<div class="col-md-10">
+
   <table class="table table-condensed table-hover">
     <thead>
       <tr>
         <th>Username</th>
         <th></th>
+        <th> rated beers </th>
+        <th> total ratings </th>
       </tr>
     </thead>
 
@@ -21,6 +24,8 @@
               <div class="label label-warning">account frozen</div>
             <% end %>
           </td>
+          <td><%= user.beers.size %></td>
+          <td><%= user.ratings.size %></td>
         </tr>
       <% end %>
     </tbody>

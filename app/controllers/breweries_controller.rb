@@ -2,12 +2,13 @@ class BreweriesController < ApplicationController
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
   before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :ensure_that_admin, only: [:destroy]
+  before_action :skip_if_cached, only: [:index]
+  before_action :handle_fragment_expirations, only: [:create, :update, :destroy]
 
   # GET /breweries
   # GET /breweries.json
   def index
-    order = params[:order] || 'name'
-    breweries = Brewery.ordered order, session[:order]
+    breweries = Brewery.ordered @order, session[:order]
     @breweries = Brewery.all
     @active_breweries = breweries[:active]
     @retired_breweries = breweries[:retired]
@@ -87,6 +88,16 @@ class BreweriesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def brewery_params
     params.require(:brewery).permit(:name, :year, :active)
+  end
+
+  def handle_fragment_expirations
+    fragments = ["breweries-name", "breweries-brewery", "breweries-style"]
+    fragments.each{ |f| expire_fragment(f) }
+  end
+
+  def skip_if_cached
+    @order = params[:order] || 'name'
+    return render :index if fragment_exist?( "breweries-#{@order}" )
   end
 
 end

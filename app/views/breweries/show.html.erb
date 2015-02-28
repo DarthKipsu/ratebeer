@@ -1,4 +1,5 @@
 <div class="col-md-12">
+<% cache @brewery do %>
 <h2>
   <%= @brewery.name %>
 </h2>
@@ -21,6 +22,7 @@
       <li><%= link_to beer.name, beer %></li>
     <% end %>
 </ul>
+<% end %>
 
 <%= link_to "change activity", toggle_activity_brewery_path(@brewery.id), method: :post, class: "btn btn-primary" %>
 <%= edit_and_destroy_buttons(@brewery) %>
