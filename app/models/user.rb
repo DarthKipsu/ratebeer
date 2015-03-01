@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   validates :username, uniqueness: true,
-    length: { in: 3..15 }
+    length: { in: 3..20 }
   validates :password, length: { minimum: 4 },
     format: { with: /([A-Z]\D*\d|\d\D*[A-Z])/,
               message: "must contain at least one capital letter and one number" }
@@ -13,6 +13,17 @@ class User < ActiveRecord::Base
     has_many :beers, through: :ratings
     has_many :memberships, dependent: :destroy
     has_many :beer_clubs, through: :memberships
+
+    def self.github(info)
+      user = User.find_by username:info.nickname
+      if user.nil?
+      password = SecureRandom.base64
+      user = User.create!(username: info.nickname,
+                          password: password,
+                          password_confirmation: password)
+      end
+      user
+    end
 
     def self.top_raters(n)
       User.all.sort_by{ |u| -(u.ratings.count||0) }.take(n)

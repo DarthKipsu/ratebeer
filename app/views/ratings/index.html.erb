@@ -1,8 +1,9 @@
 <div class="col-md-12"> 
+<% cache "ratings", expires_in: 10.minutes, skip_digest: true do %>
 <div class="col-md-6"> 
-  <h2>Top Ratings</h2>
+    <h2>Top Ratings</h2>
 
-  <p>Number of ratings: <%= @ratings.count %></p>
+    <p>Number of ratings: <%= @ratings.count %></p>
 </div>
 <div class="col-md-6"> 
   </br>
@@ -64,4 +65,5 @@
       <% end %>
     </tbody>
   </table>
+<% end %>
 </div>

@@ -27,6 +27,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'httparty'
 gem 'jquery-turbolinks'
 gem 'rack-mini-profiler'
+gem 'omniauth-github'
 
 group :development, :test do
       gem 'sqlite3'
